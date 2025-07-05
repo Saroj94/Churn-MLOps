@@ -1,0 +1,29 @@
+-------------------------------------DATA INSERTION IN MONGODB-----------------------------------------
+1. Create data insertion folder and data_insertion file.✅
+2. Write code to insert data into MONGODB database✅ 
+
+-------------------------------------------CONSTANT VARIABLES-------------------------------------------
+1. Declare variables within Constants/__init__.py file variables specifically used in each components of the Project workflow.✅
+
+-------------------------------------MONGODB CLIENT IN CONFIGURATION------------------------------------
+1. Add code to configuration/mongo_db_connections.py file and define the func for mongodb connection.✅
+
+-----------------------------------FETCH DATA FROM DATABASE USING MDB CONNECTION------------------------
+1. Inside "data_access" folder, add code to Fecth_Data func that will use mongo_db_connections.py to connect with DB, and the
+   fetch data in key-val format and transform that to df✅ 
+
+----------------------------------------INITIALIZE THE DVC AND GIT---------------------------------------
+1. Git init
+2. DVC init
+----------------------------------------------DATA INGESTION---------------------------------------------
+0. Add constants in Constant/__init__.py file for Data Ingestion df✅
+1. Add code to entity.config_entity.py file for DataIngestionConfig class✅
+2. Add code to entity.artifact_entity.py file for DataIngestionArtifact class✅
+3. Add code to components.data_ingestion.py file
+4. Add data ingestion code to training pipeline file
+5. Run demo.py (set mongodb connection url first, see next step)
+
+---------------------------------------------DVC & GITHUB------------------------------------------------
+1. Run dvc repro 
+2. Push code to git 
+

@@ -1,0 +1,9 @@
+logging
+from_root
+datetime
+pandas
+pymongo
+certifi
+dotenv
+scikit-learn
+dvc
