@@ -7,3 +7,10 @@ from dataclasses import dataclass
 class DataIngestionArtifact:
     trained_file_path: str
     test_file_path: str
+
+##DATA VALIDATION ARTIFACT
+@dataclass
+class DataValidationArtifact:
+    validation_report_file_path: str
+    validation_message: str
+    validation_status:bool

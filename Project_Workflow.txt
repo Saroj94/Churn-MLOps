@@ -2,6 +2,10 @@
 1. Create data insertion folder and data_insertion file.✅
 2. Write code to insert data into MONGODB database✅ 
 
+----------------------------------------SETUP CONFIGURATION-------------------------------------------
+1. Add block of code on setup.py file that helps to make the meta-data of the project such as Project_name, Version, find_packages().
+2. Must Installed -e. which will tell Python to treat your project like a real package — even during development.
+
 -------------------------------------------CONSTANT VARIABLES-------------------------------------------
 1. Declare variables within Constants/__init__.py file variables specifically used in each components of the Project workflow.✅
 
@@ -26,4 +30,26 @@
 ---------------------------------------------DVC & GITHUB------------------------------------------------
 1. Run dvc repro 
 2. Push code to git 
+
+----------------------------------------------UTILS FUNCTION----------------------------------------------
+1. Add all required function in main_utils.py file that will be use in remaining components of the pipeline.
+
+---------------------------------------------CONFIG YAML FILE----------------------------------------------
+1. List down all the name of the columns and dataset information in a config.yaml file for the data validation.
+
+----------------------------------------------DATA VALIDATION CONSTANT-----------------------------------------
+1. Add the data validation directory name as "data_validation".
+2. Add the name of data validation report as "report.yaml"
+
+-----------------------------------------------DATA VALIDATION CONFIG/ARTIFACT---------------------------------
+1. Add code data validation configuration entities in config_entity.py file.
+2. Add code data validation artifact entities in artifact_entity.py file.
+
+----------------------------------------------DATA VALIDATION---------------------------------------------------
+1. Add code on data validation file
+2. Add code on training pipeline file
+
+
+
+
 

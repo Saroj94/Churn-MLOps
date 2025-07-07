@@ -5,28 +5,28 @@ stages:
     deps:
     - path: src/components/data_ingestion.py
       hash: md5
-      md5: 232b6fa73b16998e7417edb797da27b0
-      size: 4664
+      md5: ec656118155467d33e9bdaef92d4941b
+      size: 4561
     - path: src/configuration/mongo_db_connection.py
       hash: md5
       md5: ffc6343ddad10ec0f598dee9d315ef2e
       size: 1925
     - path: src/constants/__init__.py
       hash: md5
-      md5: 5fc8e136d96f749213aeefaece6ec24f
-      size: 859
+      md5: 7115f424f473ad67cc82cae6f9b31fd0
+      size: 1043
     - path: src/data_access/Fetch_Data.py
       hash: md5
       md5: 6888b821b469ad37be742c089f71749b
       size: 1903
     - path: src/entity/artifact_entity.py
       hash: md5
-      md5: fc237ee998a602242a4c23463103bb92
-      size: 221
+      md5: 1f67e7baa6e379d8d2945eff2fc277a9
+      size: 383
     - path: src/entity/config_entity.py
       hash: md5
-      md5: e983a8498aeec0d4f19880b7f729f378
-      size: 989
+      md5: 94ea0a7955218a92541c0af5194de5dd
+      size: 1251
     - path: src/exception/__init__.py
       hash: md5
       md5: 311a404df16451fd1b68c9838d8865af
@@ -38,11 +38,60 @@ stages:
     outs:
     - path: Artifact/Data_ingestion/Ingested
       hash: md5
-      md5: a055a857384e344a3ea885d8130d0ade.dir
-      size: 4669384
+      md5: 19a5432d4a240f0fff9f85bb9ed7710b.dir
+      size: 4635257
       nfiles: 2
     - path: Artifact/Data_ingestion/Raw_Data
       hash: md5
-      md5: 6012b48f468c40adeed28d46f23b00d7.dir
-      size: 4669103
+      md5: 5701069452fa2d829dc3e72a3c6e7a1e.dir
+      size: 4634987
+      nfiles: 1
+  data_validation:
+    cmd: python src/components/data_validation.py
+    deps:
+    - path: config/schema.yaml
+      hash: md5
+      md5: c317b18b7f8cb83e5c9599d26bad542e
+      size: 1394
+    - path: src/components/data_ingestion.py
+      hash: md5
+      md5: ec656118155467d33e9bdaef92d4941b
+      size: 4561
+    - path: src/components/data_validation.py
+      hash: md5
+      md5: 24ffc3385e1bb6715a782310f243b814
+      size: 6991
+    - path: src/configuration/mongo_db_connection.py
+      hash: md5
+      md5: ffc6343ddad10ec0f598dee9d315ef2e
+      size: 1925
+    - path: src/constants/__init__.py
+      hash: md5
+      md5: 7115f424f473ad67cc82cae6f9b31fd0
+      size: 1043
+    - path: src/data_access/Fetch_Data.py
+      hash: md5
+      md5: 6888b821b469ad37be742c089f71749b
+      size: 1903
+    - path: src/entity/artifact_entity.py
+      hash: md5
+      md5: 1f67e7baa6e379d8d2945eff2fc277a9
+      size: 383
+    - path: src/entity/config_entity.py
+      hash: md5
+      md5: 94ea0a7955218a92541c0af5194de5dd
+      size: 1251
+    - path: src/exception/__init__.py
+      hash: md5
+      md5: 311a404df16451fd1b68c9838d8865af
+      size: 1839
+    - path: src/logger/__init__.py
+      hash: md5
+      md5: 9c2cb992f4f432366efd18fbcb634581
+      size: 1475
+    outs:
+    - path: Artifact/Data_validation
+      hash: md5
+      md5: 10cb0a3fa87e972d066d6a9939550294.dir
+      size: 52
       nfiles: 1

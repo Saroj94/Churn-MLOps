@@ -17,6 +17,7 @@ TIMESTAMP: str=datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 FILE_NAME: str="data.csv"
 TRAIN_FILE_NAME: str="train.csv"
 TEST_FILE_NAME: str="test.csv"
+SCHEMA_FILE_PATH=os.path.join("config","schema.yaml")
 
 
 ##Data ingestion constants
@@ -25,3 +26,7 @@ DATA_INGESTION_DIR_NAME: str="Data_ingestion"
 DATA_INGESTION_FEATURE_STORE_DIR: str="Raw_Data"
 DATA_INGESTION_INGESTED_DIR: str="Ingested"
 DATA_INGESTION_TRAIN_TEST_SPLIT_RATIO: float=0.30
+
+#Data validation constant
+DATA_VALIDATION_DIR_NAME: str = "Data_validation"
+DATA_VALIDATION_REPORT_FILE_NAME:str = "Report.yaml"

@@ -7,3 +7,8 @@ certifi
 dotenv
 scikit-learn
 dvc
+numpy
+dill
+imblearn
+pickle
+-e .

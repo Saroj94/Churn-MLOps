@@ -1,6 +1,4 @@
 import os, sys
-##for dvc pipeline
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../../")))
 from src.data_access.Fetch_Data import FetchData
 from src.constants import *
 from src.exception import MyException
