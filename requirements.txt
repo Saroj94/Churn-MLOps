@@ -9,6 +9,6 @@ scikit-learn
 dvc
 numpy
 dill
-imblearn
+imbalanced-learn
 pickle
 -e .

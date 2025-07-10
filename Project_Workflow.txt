@@ -45,9 +45,21 @@
 1. Add code data validation configuration entities in config_entity.py file.
 2. Add code data validation artifact entities in artifact_entity.py file.
 
-----------------------------------------------DATA VALIDATION---------------------------------------------------
+----------------------------------------------DATA VALIDATION--------------------------------------------------
 1. Add code on data validation file
-2. Add code on training pipeline file
+
+----------------------------------------------TRAINING PIPELINE------------------------------------------------
+1. Add code on training pipeline file
+
+--------------------------------------------DATA TRANSFORMATION CONSTANTS--------------------------------------
+1. Add constant variables in constant file
+
+------------------------------------------DATA TRANSFORMATION CONFIG/ARTIFACT----------------------------------
+1. Add code data transformation configuration in config_entity.py file
+2. Add code data transformation artifacts in artifact_entity.py file.
+
+----------------------------------------------DATA TRANSFORMATION-----------------------------------------------
+1. Add code data transformation to transform features
 
 
 

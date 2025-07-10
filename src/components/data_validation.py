@@ -8,7 +8,7 @@ from src.constants import SCHEMA_FILE_PATH
 from src.entity.config_entity import DataValidationConfig
 from src.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact
 
-##Data validation class which perform 
+##Data validation class which ensures that the data accuracy
 class DataValidation:
     """This class performs the a complete data validation on incoming data and 
     generate a data validation report in a yaml format"""

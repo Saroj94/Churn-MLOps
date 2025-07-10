@@ -73,6 +73,9 @@ label_transformation_features:
   - PhoneService 
   - PaperlessBilling
 
+target_column:
+  - Churn
+  
 
 
 
