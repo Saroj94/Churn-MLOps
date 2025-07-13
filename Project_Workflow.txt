@@ -24,8 +24,9 @@
 1. Add code to entity.config_entity.py file for DataIngestionConfig class✅
 2. Add code to entity.artifact_entity.py file for DataIngestionArtifact class✅
 3. Add code to components.data_ingestion.py file
-4. Add data ingestion code to training pipeline file
-5. Run demo.py (set mongodb connection url first, see next step)
+4. Add pipeline runner block.
+5. Add data ingestion code to training pipeline file
+6. Run demo.py (set mongodb connection url first, see next step)
 
 ---------------------------------------------DVC & GITHUB------------------------------------------------
 1. Run dvc repro 
@@ -47,19 +48,40 @@
 
 ----------------------------------------------DATA VALIDATION--------------------------------------------------
 1. Add code on data validation file
+2. Add pipeline runner block.
 
 ----------------------------------------------TRAINING PIPELINE------------------------------------------------
-1. Add code on training pipeline file
+1. Add data validation code to training pipeline file
 
 --------------------------------------------DATA TRANSFORMATION CONSTANTS--------------------------------------
 1. Add constant variables in constant file
 
 ------------------------------------------DATA TRANSFORMATION CONFIG/ARTIFACT----------------------------------
-1. Add code data transformation configuration in config_entity.py file
-2. Add code data transformation artifacts in artifact_entity.py file.
+1. Add data transformation configuration code in config_entity.py file
+2. Add data transformation artifacts code in artifact_entity.py file.
 
 ----------------------------------------------DATA TRANSFORMATION-----------------------------------------------
 1. Add code data transformation to transform features
+2. Add pipeline runner block.
+
+----------------------------------------------TRAINING PIPELINE------------------------------------------------
+1. Add data transformation code to training pipeline file
+
+-------------------------------------------------MODEL YAML----------------------------------------------------
+1. Add schemas for the models in model.yaml 
+
+-------------------------------------------MODEL TRAINER CONSTANT-----------------------------------------------
+1. Add the model trainer directory name as "model_trainer"
+2. Add the trained model directory name as "trained_model"
+3. Add the trained model name as "model.pkl"
+4. Add the model config file path as "config, model.yaml"
+
+------------------------------------------MODEL TRAINER CONFIG/ARTIFACT-----------------------------------------
+1. Add model trainer configuration code in config_entity.py file
+2. Add model classification metric and trainer artifacts in artifact_entity.py file.
+
+------------------------------------------------MODEL_REGISTRY---------------------------------------------------
+1.
 
 
 

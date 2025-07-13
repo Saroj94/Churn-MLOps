@@ -10,5 +10,7 @@ dvc
 numpy
 dill
 imbalanced-learn
+xgboost
+lightgbm
 pickle
 -e .

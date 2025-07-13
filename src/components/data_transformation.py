@@ -13,7 +13,10 @@ from sklearn.preprocessing import PowerTransformer
 from imblearn.over_sampling import SMOTEN
 from src.constants import *
 from src.entity.config_entity import DataTransformationConfig
-from src.entity.artifact_entity import DataIngestionArtifact,DataValidationArtifact,DataTransformationArtifact
+from src.entity.artifact_entity import (DataIngestionArtifact,
+                                        DataValidationArtifact,
+                                        DataTransformationArtifact)
+from src.entity.estimator import TargetFeatureMapping
 
 
 ##Data transformation stage
@@ -69,20 +72,6 @@ class DataTransformation:
         except Exception as e:
             raise MyException(e,sys)
         
-    ##change the churn values
-    # def target_column_mapper(self,df:pd.Series):
-    #     try:
-    #         logging.info("Churn binary value Yes/No is mapped into 1/0")
-    #         target_col=self.schema_config['target_column']
-    #         if isinstance(target_col, list):
-    #             target = pd.Series(target_col)
-    #             mapped_series=target.map({'Yes':1,'No':0})
-    #             if mapped_series.isnull().sum() > 0:
-    #                 raise MyException("Target column contains unmapped or null values after mapping.", sys)
-    #         return mapped_series
-    #     except Exception as e:
-    #         raise MyException(e,sys)
-        
     ##droping the unused column
     def drop_columns(self,df):
         "Drop unused column from the data."
@@ -123,11 +112,11 @@ class DataTransformation:
             logging.info("Input and Target columns defined for both train and Test data.")
 
             logging.info("Applying custom transformation methods to just created input and target columns of Train data.")
-            # target_fetaure_train_df=self.target_column_mapper(target_fetaure_train_df)
+            target_fetaure_train_df=target_fetaure_train_df.replace(TargetFeatureMapping().convert_as_dict())
             input_feature_train_df=self.drop_columns(input_feature_train_df)
 
             logging.info("Applying custom transformation methods to just created input and target columns of Test data.")
-            # target_fetaure_test_df=self.target_column_mapper(target_fetaure_test_df)
+            target_fetaure_test_df=target_fetaure_test_df.replace(TargetFeatureMapping().convert_as_dict())
             input_feature_test_df=self.drop_columns(input_feature_test_df)
             logging.info("Custom transformations applied to Train and Test data")
 
