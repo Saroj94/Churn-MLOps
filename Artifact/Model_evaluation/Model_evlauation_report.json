@@ -1,0 +1,9 @@
+{
+    "is_model_accepted": true,
+    "changed_accuracy": 0.12100840336134444,
+    "precision_score": 0.6380368098159509,
+    "recall_score": 0.5875706214689266,
+    "f1_score": 0.611764705882353,
+    "s3_model_path": "model.pkl",
+    "trained_model_path": "Artifact/Model_trainer/Trained_model/model.pkl"
+}

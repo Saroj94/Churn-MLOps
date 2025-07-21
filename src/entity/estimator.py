@@ -29,7 +29,10 @@ class ChurnModel:
             transformed_feature=self.preprocessing_object.transform(dataframe)
             logging.info("Perform prediction on transformed fetaure using trained model.")
             prediction=self.trained_model_obj.predict(transformed_feature)
-            return prediction
+
+            # Optional: convert back to 'Yes' or 'No' for readability
+            mapping = TargetFeatureMapping().reverse_mapping()
+            return [mapping[pred] for pred in prediction]
         except Exception as e:
             raise MyException(e,sys)
         
@@ -38,3 +41,4 @@ class ChurnModel:
     
     def __str__(self):
         return f"{type(self.trained_model_obj).__name__}()"
+    

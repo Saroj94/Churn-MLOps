@@ -3,6 +3,7 @@ from typing import Tuple
 from src.logger import logging
 from src.exception import MyException
 import numpy as np
+import mlflow
 from sklearn.ensemble import VotingClassifier
 from src.entity.config_entity import ModelTrainerConfig
 from src.entity.artifact_entity import (DataTransformationArtifact,
@@ -16,6 +17,7 @@ from src.entity.model_resgistry import MODEL_REGISTRY
 from sklearn.metrics import accuracy_score,f1_score,recall_score,precision_score
 from src.entity.estimator import ChurnModel
 
+
 ##Model training class
 class ModelTrainer:
     "This class responsible for training the model"
@@ -26,6 +28,8 @@ class ModelTrainer:
         """
         self.data_transformation_artifact=data_transformation_artifact
         self.model_trainer_config=model_trainer_config
+
+        logging.info("Setting up MLFlow for tracking")
 
     def load_model(self, model_file_path:str)->VotingClassifier:
         "This method responsible for loading the model from yaml"

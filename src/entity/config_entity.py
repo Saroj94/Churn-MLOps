@@ -43,3 +43,24 @@ class ModelTrainerConfig:
     trained_model_file_path: str = os.path.join(model_trainer_dir,MODEL_TRAINER_TRAINED_MODEL_DIR,TRAINED_MODEL_NAME)
     model_config_file_path: str = MODEL_TRAINER_MODEL_CONFIG_FILE_PATH
     expected_accuracy: float=MODEL_TRAINER_EXPECTED_SCORE
+
+@dataclass
+class ModelEvaluationConfig:
+    model_eval_dir_name: str = os.path.join(training_pipeline_config.artifact_dir,MODEL_EVALUATION_DIR_NAME)
+    model_eval_report_name: str = os.path.join(model_eval_dir_name,MODEL_EVALUATION_REPORT_NAME)
+    changed_threshold_score: float = MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE
+    bucket_name: str = MODEL_BUCKET_NAME
+    s3_model_key_path: str = TRAINED_MODEL_NAME
+
+
+@dataclass
+class ModelPusherConfig:
+    bucket_name: str = MODEL_BUCKET_NAME
+    s3_model_key_path: str = TRAINED_MODEL_NAME
+
+
+
+@dataclass
+class ChurnPredictorConfig:
+    model_file_path: str = TRAINED_MODEL_NAME
+    model_bucket_name: str = MODEL_BUCKET_NAME

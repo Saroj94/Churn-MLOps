@@ -12,5 +12,8 @@ dill
 imbalanced-learn
 xgboost
 lightgbm
-pickle
+mlflow
+boto3
+mypy_boto3_s3
+dagshub
 -e .

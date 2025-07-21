@@ -60,6 +60,9 @@
 1. Add data transformation configuration code in config_entity.py file
 2. Add data transformation artifacts code in artifact_entity.py file.
 
+---------------------------------------------------ESTIMATOR-----------------------------------------------------
+1. Add codes for TargetFeatureMapping class to map the target feature value like Yes=1, No=0
+
 ----------------------------------------------DATA TRANSFORMATION-----------------------------------------------
 1. Add code data transformation to transform features
 2. Add pipeline runner block.
@@ -81,7 +84,76 @@
 2. Add model classification metric and trainer artifacts in artifact_entity.py file.
 
 ------------------------------------------------MODEL_REGISTRY---------------------------------------------------
-1.
+1. Add code for all model names in dict format
+
+---------------------------------------------------ESTIMATOR-----------------------------------------------------
+1. Add codes for churnmodel class that helps to create the pipeline of transformation model and trained model
+
+---------------------------------------------------MLFLOW SETUP-------------------------------------------------
+1. Import MLFLOW in workflow
+2. Run this code in terminal : mlflow ui
+
+---------------------------------------------------MODEL TRAINER-------------------------------------------------
+1. Add code on model_trainer.py to extract, train and create artifact
+2. Also add mlflow code in model training to track its parameters and model performance.
+
+-----------------------------------------------AWS IAM USER ACCOUNT----------------------------------------------
+1. Before moving to next component of Model Evaluation, some AWS services setup is needed:
+      * Login to AWS console.
+      * Keep region set
+      * Go to IAM >> Create new user (name: ChurnPrediction)
+      * Attach policy >> select AdministratorAccess >> next >> create user
+      * Go to the user >> Security Credentials >> Access Keys >> Create access key
+      * Select CLI >> agree to condition >> next >> Create Access Key >> download csv file
+      * Set env variables with above csv values using below method:
+
+
+-----------------------------------------------AWS CREDENTIAL SETUP-----------------------------------------------
+1. Add aws access key: AWS_ACCESS_KEY_ID_ENV_KEY=os.getenv('AWS_ACCESS_KEY_ID')
+2. Add aws secret access: AWS_SECRET_ACCESS_KEY_ENV_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+3. Add region name: REGION_NAME=os.getenv('REGION_NAME')
+
+-----------------------------------------------AWS S3 BUCKET CONFIGURATION---------------------------------------
+1. Go to S3 service >> Create bucket >> Region: eu-north-1a >> General purpose >>
+        Bucket Name: "bucket_name(underscore not allowed for bucket name)" >> uncheck: "Block all public access" 
+        and acknowledge >> Hit Create Bucket
+
+-----------------------------------------------AWS S3 BUCKET CONFIGURATION---------------------------------------
+1. Now inside "src/Cloud_storage/aws_storage" code needs to be added for the configurations needed to pull 
+        and push model from AWS S3 bucket. 
+2. Inside "entity" dir we will have an "s3_estimator.py" file containing all the func to pull/push
+        data from s3 bucket.
+
+-----------------------------------------------MLFLOW DAGSHUB CONNECTION-----------------------------------------
+import dagshub
+model_tracking_uri="https://dagshub.com/Saroj94/Churn-MLOps.mlflow"
+
+dagshub.init(repo_owner='Saroj94', repo_name='Churn-MLOps', mlflow=True)
+
+import mlflow
+with mlflow.start_run():
+  mlflow.log_param('parameter name', 'value')
+  mlflow.log_metric('metric name', 1)
+
+----------------------------------------------MODEL EVALUATION CONSTANT----------------------------------------------
+1. Ensure below info in constants.__init__.py file:
+            MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE: float = "number"
+            MODEL_BUCKET_NAME = "bucket_name"
+            MODEL_PUSHER_S3_KEY = "model-registry"
+
+------------------------------------------MODEL EVALUATION CONFIG/ARTIFACT--------------------------------------------
+1. Add model evaluation config that assigned in constant.py
+2. Add model evaluation artifact 
+
+------------------------------------------MODEL PUSHER CONFIG/ARTIFACT--------------------------------------------
+1. Add model pusher config that assigned in constant.py
+2. Add model pusher artifact 
+
+
+
+
+
+
 
 
 
