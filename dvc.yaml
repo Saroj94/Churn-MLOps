@@ -2,13 +2,6 @@ stages:
     data_ingestion:
       cmd: python src/components/data_ingestion.py
       deps:
-        - src/logger/__init__.py
-        - src/exception/__init__.py
-        - src/configuration/mongo_db_connection.py
-        - src/constants/__init__.py
-        - src/data_access/Fetch_Data.py
-        - src/entity/config_entity.py
-        - src/entity/artifact_entity.py
         - src/components/data_ingestion.py
       outs:
         - Artifact/Data_ingestion/Ingested
@@ -17,15 +10,8 @@ stages:
     data_validation:
       cmd: python src/components/data_validation.py
       deps:
-        - src/logger/__init__.py
-        - src/exception/__init__.py
-        - src/configuration/mongo_db_connection.py
-        - src/constants/__init__.py
-        - src/data_access/Fetch_Data.py
-        - src/entity/config_entity.py
-        - src/entity/artifact_entity.py
-        - src/components/data_ingestion.py
-        - config/schema.yaml 
+        - Artifact/Data_ingestion/Ingested
+        - Artifact/Data_ingestion/Raw_Data
         - src/components/data_validation.py
       outs:
         - Artifact/Data_validation
@@ -33,16 +19,7 @@ stages:
     data_transformation:
       cmd: python src/components/data_transformation.py
       deps:
-        - src/logger/__init__.py
-        - src/exception/__init__.py
-        - src/configuration/mongo_db_connection.py
-        - src/constants/__init__.py
-        - src/data_access/Fetch_Data.py
-        - src/entity/config_entity.py
-        - src/entity/artifact_entity.py
-        - src/components/data_ingestion.py
-        - config/schema.yaml 
-        - src/components/data_validation.py 
+        - Artifact/Data_validation
         - src/components/data_transformation.py
       outs:
         - Artifact/Data_transformation/Transformed
@@ -51,18 +28,8 @@ stages:
     model_training:
       cmd: python src/components/model_trainer.py
       deps:
-        - src/logger/__init__.py
-        - src/exception/__init__.py
-        - src/configuration/mongo_db_connection.py
-        - src/constants/__init__.py
-        - src/data_access/Fetch_Data.py
-        - src/entity/config_entity.py
-        - src/entity/artifact_entity.py
-        - src/components/data_ingestion.py
-        - config/schema.yaml 
-        - src/components/data_validation.py 
-        - src/components/data_transformation.py
-        - src/entity/estimator.py
+        - Artifact/Data_transformation/Transformed
+        - Artifact/Data_transformation/Transformed_object
         - src/components/model_trainer.py
       outs:
         - Artifact/Model_trainer/Trained_model
@@ -70,22 +37,8 @@ stages:
     model_evaluation:
       cmd: python src/components/model_evaluation.py
       deps:
-        - src/logger/__init__.py
-        - src/exception/__init__.py
-        - src/configuration/mongo_db_connection.py
-        - src/constants/__init__.py
-        - src/data_access/Fetch_Data.py
-        - src/entity/config_entity.py
-        - src/entity/artifact_entity.py
-        - src/components/data_ingestion.py
-        - config/schema.yaml 
-        - src/components/data_validation.py 
-        - src/components/data_transformation.py
-        - src/entity/estimator.py
-        - src/components/model_trainer.py
-        - src/cloud_storage/aws_storage.py
-        - src/entity/s3_estimator.py
+        - Artifact/Model_trainer/Trained_model
         - src/components/model_evaluation.py
       outs:
-        - 
+        - Artifact/Model_evaluation
 

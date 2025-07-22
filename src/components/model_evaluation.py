@@ -46,7 +46,6 @@ class EvaluateModelResponse:
 
 
 class ModelEvaluation:
-
     def __init__(self, model_eval_config: ModelEvaluationConfig, 
                  data_ingestion_artifact: DataIngestionArtifact,
                  model_trainer_artifact: ModelTrainerArtifact):
@@ -178,4 +177,32 @@ class ModelEvaluation:
             return model_evaluation_artifact
         except Exception as e:
             raise MyException(e, sys)
-        
+
+
+if __name__=="__main__":
+    from src.components.data_ingestion import DataIngestion
+    from src.components.data_validation import DataValidation
+    from src.components.data_transformation import DataTransformation
+    from src.components.model_trainer import ModelTrainer
+    from src.entity.config_entity import DataValidationConfig
+    from src.entity.config_entity import DataTransformationConfig
+    from src.entity.config_entity import ModelTrainerConfig
+    from src.entity.config_entity import ModelEvaluationConfig
+
+    data_ingestion_artifact=DataIngestion().initiate_data_ingestion()
+    data_validation_artifact=DataValidation(data_ingestion_artifact=data_ingestion_artifact,
+                                            data_validation_config=DataValidationConfig()).initiate_data_validation()
+    data_transformation_config=DataTransformation(
+                                                  data_ingestion_artifact=data_ingestion_artifact,
+                                                  data_validation_artifact=data_validation_artifact,
+                                                  data_transformation_config=DataTransformationConfig()
+                                                  )
+    data_transformation_artifact = data_transformation_config.initiate_data_transformation()
+    model_trainer = ModelTrainer(data_transformation_artifact=data_transformation_artifact,
+                                model_trainer_config=ModelTrainerConfig())
+    model_trainer_artifact = model_trainer.initiate_model_trainer()  
+    model_eval_artifact = ModelEvaluation(model_eval_config=ModelEvaluationConfig(),
+                                data_ingestion_artifact=data_ingestion_artifact,
+                                model_trainer_artifact=model_trainer_artifact)
+    model_eval_artifact.initiate_model_evaluation()
+
