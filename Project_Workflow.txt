@@ -149,6 +149,11 @@ with mlflow.start_run():
 1. Add model pusher config that assigned in constant.py
 2. Add model pusher artifact 
 
+----------------------------------------------CI/CD PUSH IN GITHUB-------------------------------------------------
+1. Add all dependencies in requirements.txt
+2. Add .github/workflows/ci_cd.yaml in the main workflow.
+---------------------------------------------DOCKER FILE CREATION-------------------------------------------------
+1. containerize all dependencies on docker file
 
 
 

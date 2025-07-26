@@ -140,8 +140,8 @@ async def predictRouteClient(request: Request):
             PaperlessBilling = form.PaperlessBilling,
             PaymentMethod = form.PaymentMethod,
             MonthlyCharges = form.MonthlyCharges,
-            TotalCharges =  form.TotalCharges
-                                )
+            TotalCharges =  form.TotalCharges)
+        
         # Convert form data into a DataFrame for the model
         Customer_df = CustomerData.get_churn_input_data_frame()
 
@@ -152,7 +152,7 @@ async def predictRouteClient(request: Request):
         value = model_predictor.predict(dataframe=Customer_df)[0]
 
         # Interpret the prediction result as 'Response-Yes' or 'Response-No'
-        status = value # "Customer churn" if value==1 else "Customer not churn"
+        status = "Customer churn" if value==1 else "Customer not churn"
         # "Response-Yes" if value == 1 else "Response-No"
 
         # Render the same HTML page with the prediction result

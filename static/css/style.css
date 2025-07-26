@@ -78,43 +78,44 @@ button {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
-/* Predict Button */
+/* Predict Button with Gradient */
 button[type="submit"] {
-    background-color: #3498db;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
     color: #fff;
 }
 
 button[type="submit"]:hover {
-    background-color: #2980b9;
+    background: linear-gradient(135deg, #0072ff, #0052cc);
 }
 
-/* Train Button */
+/* Train Button with Gradient */
 .train-button {
-    background-color: #2ecc71;
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
     color: white;
     margin-top: 15px;
 }
 
 .train-button:hover {
-    background-color: #27ae60;
+    background: linear-gradient(135deg, #38f9d7, #0fd9a0);
 }
 
-/* Prediction Result */
+/* Prediction Result with Gradient Border */
 .result {
     margin-top: 25px;
     padding: 15px;
-    background-color: #ecf8ff;
-    border-left: 6px solid #3498db;
+    background: #f0faff;
+    border-left: 6px solid;
+    border-image: linear-gradient(180deg, #00c6ff, #0072ff) 1;
     border-radius: 5px;
 }
 
 .result h2 {
     margin: 0;
     font-size: 18px;
-    color: #3498db;
+    color: #0072ff;
 }
 
 /* Responsive Design */
