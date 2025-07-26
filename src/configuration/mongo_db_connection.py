@@ -7,6 +7,8 @@ import pymongo
 from src.exception import MyException
 from src.logger import logging
 from src.constants import DATABASE_NAME,MONGODB_URL
+from dotenv import load_dotenv
+load_dotenv()
 
 ##load the certificate authority file to avoid timeout errors while connecting with database
 ca=certifi.where()
@@ -24,14 +26,15 @@ class MongodbClient:
     def __init__(self, Database: str=DATABASE_NAME)->None:
         """It initializes the connection of Mongodb database. 
         if no existing connection is found then it establish the new one."""
+        mongo_db_url=os.getenv("MONGODB_URL")
         try:
             ##check the connection that exist or not
             if MongodbClient.client is None:
-                mongodb_url=MONGODB_URL ##if client is none then establish the connection string
+                mongodb_url=mongo_db_url ##if client is none then establish the connection string
 
                 ##even if mongodb_url/MONGODB_URL is none then perform this step
                 if mongodb_url is None:
-                    raise Exception(f'Environment Variable for connection string: {MONGODB_URL} is not set.')
+                    raise Exception(f'Environment Variable for connection string: {mongo_db_url} is not set.')
                 ##then establish a new mongodb client connection
                 MongodbClient.client=pymongo.MongoClient(mongodb_url,tlsCAFile=ca)
 
@@ -45,3 +48,8 @@ class MongodbClient:
             raise MyException(e, sys)
 
     
+
+
+
+
+
