@@ -8,6 +8,8 @@ on:
 jobs:
   Churn-Prediction:
     runs-on: ubuntu-latest
+    env: 
+      MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}
 
     steps:
       - name: Checkout code
