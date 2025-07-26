@@ -23,7 +23,7 @@ stages:
     deps:
     - path: Artifact/Data_ingestion/Ingested
       hash: md5
-      md5: 7aefc5b3f35cecdd06f6cbb9b54382f8.dir
+      md5: ae384685702d82c7d2d674b9f6ff9f0d.dir
       size: 4635257
       nfiles: 2
     - path: Artifact/Data_ingestion/Raw_Data
@@ -69,12 +69,12 @@ stages:
     deps:
     - path: Artifact/Data_transformation/Transformed
       hash: md5
-      md5: c074d4f3ff0a6fb0e5e120d52e9b0918.dir
-      size: 2715112
+      md5: 5d21e2d5f678edfb1ba8933cce441023.dir
+      size: 2715440
       nfiles: 2
     - path: Artifact/Data_transformation/Transformed_object
       hash: md5
-      md5: 6f31ea827b7b72c9af7d000f00a7a9d9.dir
+      md5: 68ef50addd742126bdd5d33dd2f8be66.dir
       size: 4313
       nfiles: 1
     - path: src/components/model_trainer.py
@@ -84,6 +84,24 @@ stages:
     outs:
     - path: Artifact/Model_trainer/Trained_model
       hash: md5
-      md5: 3a87ac19f9b95529116fd107a984c37d.dir
-      size: 1359014
+      md5: 79ec26dd665b5ddf068facc03385b1e0.dir
+      size: 1355793
+      nfiles: 1
+  model_evaluation:
+    cmd: python src/components/model_evaluation.py
+    deps:
+    - path: Artifact/Model_trainer/Trained_model
+      hash: md5
+      md5: 135c525b2d738c224b58f20474ee398c.dir
+      size: 1355233
+      nfiles: 1
+    - path: src/components/model_evaluation.py
+      hash: md5
+      md5: 94e68388d2b3014a8796ef8db2e33335
+      size: 10082
+    outs:
+    - path: Artifact/Model_evaluation
+      hash: md5
+      md5: 28b18809b609add6333c4b37af4ad1b2.dir
+      size: 264
       nfiles: 1

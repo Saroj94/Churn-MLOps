@@ -26,15 +26,15 @@ class MongodbClient:
     def __init__(self, Database: str=DATABASE_NAME)->None:
         """It initializes the connection of Mongodb database. 
         if no existing connection is found then it establish the new one."""
-        mongo_db_url=os.getenv("MONGODB_URL")
+        # mongo_db_url=os.getenv("MONGODB_URL")
         try:
             ##check the connection that exist or not
             if MongodbClient.client is None:
-                mongodb_url=mongo_db_url ##if client is none then establish the connection string
+                mongodb_url=MONGODB_URL ##if client is none then establish the connection string
 
                 ##even if mongodb_url/MONGODB_URL is none then perform this step
                 if mongodb_url is None:
-                    raise Exception(f'Environment Variable for connection string: {mongo_db_url} is not set.')
+                    raise Exception(f'Environment Variable for connection string: {MONGODB_URL} is not set.')
                 ##then establish a new mongodb client connection
                 MongodbClient.client=pymongo.MongoClient(mongodb_url,tlsCAFile=ca)
 
