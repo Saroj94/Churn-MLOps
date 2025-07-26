@@ -8,7 +8,7 @@ jobs:
 
     # ✅ Make secret accessible as environment variable
     env:
-      MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}
+      MDB_URL: ${{ secrets.MDB_URL }}
 
     steps:
       - name: checkout-code
@@ -19,19 +19,16 @@ jobs:
         with:
           python-version: '3.10'
 
-      - name: install dependencies
-        run: pip install -r requirements.txt
-
       - name: Debug secret loading (for testing only)
         run: |
-          echo "Checking if MONGO_DB_URL is set"
-          if [ -z "$MONGO_DB_URL" ]; then
-            echo "MONGO_DB_URL is NOT set!"
+          echo "Checking if MDB_URL is set"
+          if [ -z "$MDB_URL" ]; then
+            echo "MDB_URL is NOT set!"
             exit 1
           else
-            echo "MONGO_DB_URL is set"
+            echo "MDB_URL is set"
           fi
-          
+
       - name: Cache pip dependencies
         uses: actions/cache@v3
         with:
@@ -39,6 +36,9 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
+      
+      - name: install dependencies
+        run: pip install -r requirements.txt
 
       - name: run Pipeline
         run: dvc repro
