@@ -14,10 +14,10 @@ class S3Client:
         """
 
         if S3Client.s3_resource==None or S3Client.s3_client==None:
-            __access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
+            __access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
             __secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
             if __access_key_id is None:
-                raise Exception(f"Environment variable: {os.getenv("AWS_ACCESS_KEY_ID")} is not not set.")
+                raise Exception(f"Environment variable: {os.getenv('AWS_ACCESS_KEY_ID')} is not not set.")
             if __secret_access_key is None:
                 raise Exception(f"Environment variable: {os.getenv('AWS_SECRET_ACCESS_KEY')} is not set.")
         
