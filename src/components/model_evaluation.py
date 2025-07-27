@@ -18,22 +18,22 @@ import dagshub
 import mlflow
 
 #______________________________________________________________________________________
-# dagshub_token=DAGSHUB_ACCESS_TOKEN
-# if dagshub_token is None:
-#     raise EnvironmentError("Dagshub environment is not set yet.")
+dagshub_token=DAGSHUB_ACCESS_TOKEN
+if dagshub_token is None:
+    raise EnvironmentError("Dagshub environment is not set yet.")
 
-# os.environ("MLFLOW_TRACKING_USERNAME")=dagshub_token
-# os.environ("MLFLOW_TRACKING_PASSWORD")=dagshub_token
+os.environ("MLFLOW_TRACKING_USERNAME")=dagshub_token
+os.environ("MLFLOW_TRACKING_PASSWORD")=dagshub_token
 
-# dagshub_url=DAGSHUB_URL
-# repository_owner=REPOSITORY_OWNER
-# repository_name=REPOSITORY_NAME
+dagshub_url=DAGSHUB_URL
+repository_owner=REPOSITORY_OWNER
+repository_name=REPOSITORY_NAME
 
-# mlflow.set_tracking_uri(f'{dagshub_url}/{repository_owner}/{repository_name}.mlflow')
+mlflow.set_tracking_uri(f'{dagshub_url}/{repository_owner}/{repository_name}.mlflow')
 
 #_______________________________________________________________________________________
-model_tracking_uri="https://dagshub.com/Saroj94/Churn-MLOps.mlflow"
-dagshub.init(repo_owner='Saroj94', repo_name='Churn-MLOps', mlflow=True)
+# model_tracking_uri="https://dagshub.com/Saroj94/Churn-MLOps.mlflow"
+# dagshub.init(repo_owner='Saroj94', repo_name='Churn-MLOps', mlflow=True)
 
 @dataclass
 class EvaluateModelResponse:

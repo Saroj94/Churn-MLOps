@@ -6,7 +6,7 @@ import certifi
 import pymongo
 from src.exception import MyException
 from src.logger import logging
-from src.constants import DATABASE_NAME,MONGODB_URL
+from src.constants import DATABASE_NAME
 
 ##load the certificate authority file to avoid timeout errors while connecting with database
 ca=certifi.where()
@@ -24,7 +24,7 @@ class MongodbClient:
     def __init__(self, Database: str=DATABASE_NAME)->None:
         """It initializes the connection of Mongodb database. 
         if no existing connection is found then it establish the new one."""
-        mongo_db_url=os.getenv("MDB_URL")
+        mongo_db_url=os.getenv("MDB_URL") ##wrong variable(MONGODB_URL) through constant.py file for variable instead of connecting the environment variable(MDB_URL) directly from .env
         try:
             ##check the connection that exist or not
             if MongodbClient.client is None:
