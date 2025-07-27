@@ -26,12 +26,12 @@ if dagshub_token is None:
 os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-dagshub_url = DAGSHUB_URL
-repository_owner = REPOSITORY_OWNER
-repository_name = REPOSITORY_NAME
+dagshub_url = 'https://dagshub.com'
+repository_owner = 'Saroj94'
+repository_name = 'Churn-MLOps'
 
 # Set MLflow tracking URI
-mlflow.set_tracking_uri(f'{dagshub_url}/{repository_owner}/{repository_name}.mlflow')
+mlflow.set_tracking_uri(f"{dagshub_url}/{repository_owner}/{repository_name}.mlflow")
 
 experiment_name = "Churn_model_eval_Experiment"
 client = MlflowClient()
