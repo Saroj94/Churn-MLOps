@@ -31,14 +31,6 @@ repository_owner=REPOSITORY_OWNER
 repository_name=REPOSITORY_NAME
 
 mlflow.set_tracking_uri(f'{dagshub_url}/{repository_owner}/{repository_name}.mlflow')
-
-experiment_name = "Churn_model_eval_Experiment"
-client = MlflowClient()
-
-existing_experiment = client.get_experiment_by_name(experiment_name)
-if existing_experiment is None:
-    client.create_experiment(experiment_name)
-mlflow.set_experiment(experiment_name)
 #_______________________________________________________________________________________
 # model_tracking_uri="https://dagshub.com/Saroj94/Churn-MLOps.mlflow"
 # dagshub.init(repo_owner='Saroj94', repo_name='Churn-MLOps', mlflow=True)
@@ -126,7 +118,19 @@ class ModelEvaluation:
             logging.info(f"Result: {result}")
 
             ## With mlflow tracking 
-            mlflow.set_experiment("Churn_model_eval_Experiment")
+
+            experiment_name = "Churn_model_eval_Experiment"
+            client = MlflowClient()
+
+            # Check if it exists
+            existing_experiment = client.get_experiment_by_name(experiment_name)
+
+            # If not, create it
+            if existing_experiment is None:
+                experiment_id = client.create_experiment(experiment_name)
+            else:
+                experiment_id = existing_experiment.experiment_id
+            mlflow.set_experiment(experiment_name)
             with mlflow.start_run() as run:
                 mlflow.log_param("trained_model_path",self.model_trainer_artifact.trained_model_file_path)
                 mlflow.log_metric("Trained model f1 score", trained_model_f1_score)
