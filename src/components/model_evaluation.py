@@ -18,7 +18,7 @@ import dagshub
 import mlflow
 
 #______________________________________________________________________________________
-dagshub_token=DAGSHUB_ACCESS_TOKEN
+dagshub_token=os.getenv("DAGSHUB_ACCESS_TOKEN")
 if dagshub_token is None:
     raise EnvironmentError("Dagshub environment is not set yet.")
 
