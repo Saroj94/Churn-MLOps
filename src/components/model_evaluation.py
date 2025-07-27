@@ -16,6 +16,7 @@ from src.entity.artifact_entity import ModelTrainerArtifact, DataIngestionArtifa
 from sklearn.metrics import f1_score, precision_score, recall_score
 import dagshub
 import mlflow
+from mlflow.tracking import MlflowClient
 
 #______________________________________________________________________________________
 dagshub_token=os.getenv("DAGSHUB_ACCESS_TOKEN")
@@ -31,6 +32,13 @@ repository_name=REPOSITORY_NAME
 
 mlflow.set_tracking_uri(f'{dagshub_url}/{repository_owner}/{repository_name}.mlflow')
 
+experiment_name = "Churn_model_eval_Experiment"
+client = MlflowClient()
+
+existing_experiment = client.get_experiment_by_name(experiment_name)
+if existing_experiment is None:
+    client.create_experiment(experiment_name)
+mlflow.set_experiment(experiment_name)
 #_______________________________________________________________________________________
 # model_tracking_uri="https://dagshub.com/Saroj94/Churn-MLOps.mlflow"
 # dagshub.init(repo_owner='Saroj94', repo_name='Churn-MLOps', mlflow=True)
@@ -118,7 +126,7 @@ class ModelEvaluation:
             logging.info(f"Result: {result}")
 
             ## With mlflow tracking 
-            mlflow.set_experiment(experiment_name="Churn_model_eval_experiment")
+            mlflow.set_experiment("Churn_model_eval_Experiment")
             with mlflow.start_run() as run:
                 mlflow.log_param("trained_model_path",self.model_trainer_artifact.trained_model_file_path)
                 mlflow.log_metric("Trained model f1 score", trained_model_f1_score)
