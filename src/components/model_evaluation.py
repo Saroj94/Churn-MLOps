@@ -19,18 +19,33 @@ import mlflow
 from mlflow.tracking import MlflowClient
 
 #______________________________________________________________________________________
-dagshub_token=os.getenv("DAGSHUB_ACCESS_TOKEN")
+dagshub_token = os.getenv("DAGSHUB_ACCESS_TOKEN")
 if dagshub_token is None:
     raise EnvironmentError("Dagshub environment is not set yet.")
 
-os.environ["MLFLOW_TRACKING_USERNAME"]=dagshub_token
-os.environ["MLFLOW_TRACKING_PASSWORD"]=dagshub_token
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 
-dagshub_url=DAGSHUB_URL
-repository_owner=REPOSITORY_OWNER
-repository_name=REPOSITORY_NAME
+dagshub_url = DAGSHUB_URL
+repository_owner = REPOSITORY_OWNER
+repository_name = REPOSITORY_NAME
 
+# Set MLflow tracking URI
 mlflow.set_tracking_uri(f'{dagshub_url}/{repository_owner}/{repository_name}.mlflow')
+
+experiment_name = "Churn_model_eval_Experiment"
+client = MlflowClient()
+
+# Check if experiment exists
+existing_experiment = client.get_experiment_by_name(experiment_name)
+
+if existing_experiment is None:
+    # Create experiment if doesn't exist and get its ID
+    experiment_id = client.create_experiment(experiment_name)
+else:
+    experiment_id = existing_experiment.experiment_id
+
+print(f"Using MLflow experiment ID: {experiment_id}")
 #_______________________________________________________________________________________
 # model_tracking_uri="https://dagshub.com/Saroj94/Churn-MLOps.mlflow"
 # dagshub.init(repo_owner='Saroj94', repo_name='Churn-MLOps', mlflow=True)
@@ -118,18 +133,7 @@ class ModelEvaluation:
             logging.info(f"Result: {result}")
 
             ## With mlflow tracking 
-
-            experiment_name = "Churn_model_eval_Experiment"
-            client = MlflowClient()
-
-            # Check if it exists
-            existing_experiment = client.get_experiment_by_name(experiment_name)
-
-            # If not, create it
-            if existing_experiment is None:
-                experiment_id = client.create_experiment(experiment_name)
-            else:
-                experiment_id = existing_experiment.experiment_id
+            # Set the experiment in mlflow
             mlflow.set_experiment(experiment_name)
             with mlflow.start_run() as run:
                 mlflow.log_param("trained_model_path",self.model_trainer_artifact.trained_model_file_path)
