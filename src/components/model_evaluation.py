@@ -22,8 +22,8 @@ dagshub_token=os.getenv("DAGSHUB_ACCESS_TOKEN")
 if dagshub_token is None:
     raise EnvironmentError("Dagshub environment is not set yet.")
 
-os.environ("MLFLOW_TRACKING_USERNAME")=dagshub_token
-os.environ("MLFLOW_TRACKING_PASSWORD")=dagshub_token
+os.environ["MLFLOW_TRACKING_USERNAME"]=dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"]=dagshub_token
 
 dagshub_url=DAGSHUB_URL
 repository_owner=REPOSITORY_OWNER
